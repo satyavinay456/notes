@@ -1,0 +1,34 @@
+from pymongo import MongoClient 	
+from pprint import pprint
+import pandas as pd
+client=MongoClient('192.168.0.4',27017)
+db=client['Verticals_Resto']
+col=db['final_transaction']
+new=[]
+
+from pymongo import MongoClient 	
+from pprint import pprint
+import pandas as pd
+client=MongoClient('192.168.0.4',27017)
+db=client['Verticals_Resto']
+col=db['final_transaction']
+calender_cur=col.find({'rid':{'$regex':'^RES-4082B84B1318-B0'}})
+
+df=pd.DataFrame(list(calender_cur))
+
+
+final_df=df['tot3'].fillna('0')
+sum_df=sum(map(float,final_df))
+
+############
+calender_cur=col.find({'rid':'RES-4082B84B1318-B0'})
+
+############
+from pymongo import MongoClient 	
+from pprint import pprint
+import pandas as pd
+client=MongoClient('192.168.0.4',27017)
+db=client['Verticals_Resto']
+col=db['restaurants']
+calender_cur=col.find({'rid':{'$regex':'^RES-4082B84B1318-B'}})
+df=pd.DataFrame(list(calender_cur))

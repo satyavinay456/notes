@@ -1,0 +1,22 @@
+#to install mongodb
+sudo apt install -y mongodb
+
+#to check status
+sudo systemctl status mongodb
+
+#t0 check server running
+mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+
+#dumping data
+mongodump --host <hostname:port> --db <database> --username <username> --password <password> --out <path>
+mongodump --host 192.168.0.4 --port 27017 --db Verticals_Resto --out /home/vinay/backup
+
+
+#to restore dumped data
+mongorestore -d my_db ./Verticals_Resto
+
+
+
+
+
+mongodump --host 192.168.0.4 --port 27017 --db Verticals_Resto --out /home/hduser/mongodump/

@@ -1,0 +1,19 @@
+#to see all the directories
+hadoop fs -ls /
+
+#to read file
+hadoop fs -cat /sample.txt
+
+#to copy from local to hdfs
+hadoop fs -copyFromLocal data.txt /techaltum/data.txt
+[or]
+hadoop fs -put source-path destination-path
+
+#to move data
+hadoop fs -moveFromLocal local-source-path hdfs-destination-path
+
+#copy data from hadoop to local
+hadoop fs -copyToLocal source-hadoop-path destination-local-path
+[or]
+hadoop fs -get source-hadoop-path destination-local-path
+
