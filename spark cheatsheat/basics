@@ -1,0 +1,40 @@
+#to add a column to spark dataframe
+
+sdf= spark.createDataFrame([(1,4),(3,6),(4,3),(1,1)],['a','b'])
+
+sdf.show()
+
+from pyspark.sql import functions as f
+
+#to create new column
+sdf.withColumns('c',f.lit(0)).show()
+
+#manipulating one column to another
+sdf.withColumn('c',sdf.a *2).show()
+
+#check bool
+sdf.withColumn('c',sdf.a ==sdf.b).show()
+
+#catch bool column
+sdf.select(sdf.a <=sdf.b).show()
+
+#is positive
+sdf.select((sdf.a).alias('is_positive')).show()
+
+#Filtering
+sdf[(sdf.a <3) & (sdf.b>4)].show()
+[or]
+sdf.filter((sdf.a <3) & (sdf.b>4)).show()
+
+#groupby
+sdf.groupby('b').avg('a').show()
+sdf.groupby('b').agg(f.avg('a'),f.max('a')).show()
+sdf.groupby('b').agg(f.avg('a').alias('col1'),f.max('a').alias('col2')).show()
+
+#convert to pandas
+mdf=sdf.toPandas()
+
+#from pandas to spark dataframe
+ndf=spark.createDataFrame(mdf)
+
+

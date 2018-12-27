@@ -1,0 +1,7 @@
+#to read csv
+spark.read.csv('emp.txt')
+
+#read data using rdd
+file=sc.textFile('dept.txt').collect()
+a=[i.split(',') for i in file.collect()]
+spark.createDataFrame(a).show()
